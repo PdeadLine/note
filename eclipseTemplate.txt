@@ -1,0 +1,30 @@
+ 1 <?xml version="1.0" encoding="UTF-8"?>
+ 2 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ 3          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 4          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+ 5          version="3.1">
+ 6     <!--  ContextLoaderListener所加载的bean。相当于第一种方式里面的RootConfig类中包扫描的bean。-->
+ 7     <context-param>
+ 8         <param-name>contextConfigLocation</param-name>
+ 9         <param-value>spring-julysecond.xml</param-value>
+10     </context-param>
+11     <listener>
+12         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+13     </listener>
+
+	<!--####################################这一段是DispatcherServlet的配置################################################-->
+	<servlet>
+15         <servlet-name>appServlet</servlet-name>
+16         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+17         <init-param>
+18             <!--  DispatcherServlet中加载的配置文件。-->
+19             <param-name>contextConfigLocation</param-name>
+20             <param-value>com/config/spring-julythird.xml</param-value>
+21         </init-param>
+22         <load-on-startup>1</load-on-startup>
+23 	</servlet>
+24   <servlet-mapping>
+25         <servlet-name>appServlet</servlet-name>
+26         <url-pattern>*.do</url-pattern>
+27   </servlet-mapping>
+28 </web-app>
